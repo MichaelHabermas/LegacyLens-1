@@ -1,4 +1,7 @@
-"""Core abstract interfaces for ingestion, retrieval, and generation."""
+"""Core abstract interfaces for ingestion, retrieval, and generation.
+
+See docs/PRD.md and docs/research/DESIGN-DOCUMENT.md for architecture.
+"""
 
 from legacylens.core.interfaces.parser import IParser
 from legacylens.core.interfaces.chunker import IChunker
