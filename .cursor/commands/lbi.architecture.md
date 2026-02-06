@@ -1,5 +1,5 @@
 ---
-description: "Discover and document existing codebase architecture"
+description: 'Discover and document existing codebase architecture'
 ---
 
 # Analyze Codebase Architecture
@@ -11,6 +11,7 @@ Discover and document the existing architecture of your codebase.
 This command analyzes your codebase to understand its architecture before making changes. It generates documentation that informs all subsequent development decisions.
 
 **When to Run**:
+
 - Before `/lbi.request` for complex codebases
 - Before `/lbi.specify` for any existing codebase
 - After significant architectural changes
@@ -37,12 +38,12 @@ Analyze these architectural aspects:
 ```markdown
 ## Project Structure
 
-| Area | Path | Purpose |
-|------|------|---------|
-| Source | `src/` | Main application code |
-| Tests | `tests/` | Test suites |
-| Config | `config/` | Configuration files |
-| Docs | `docs/` | Documentation |
+| Area   | Path      | Purpose               |
+| ------ | --------- | --------------------- |
+| Source | `src/`    | Main application code |
+| Tests  | `tests/`  | Test suites           |
+| Config | `config/` | Configuration files   |
+| Docs   | `docs/`   | Documentation         |
 ```
 
 ### 2. Technology Stack
@@ -50,12 +51,12 @@ Analyze these architectural aspects:
 ```markdown
 ## Technology Stack
 
-| Layer | Technology | Version | Purpose |
-|-------|------------|---------|---------|
-| Language | Python | 3.11+ | Primary language |
-| Framework | FastAPI | 0.100+ | Web framework |
-| Database | PostgreSQL | 15 | Data persistence |
-| ORM | SQLAlchemy | 2.0 | Database abstraction |
+| Layer     | Technology | Version | Purpose              |
+| --------- | ---------- | ------- | -------------------- |
+| Language  | Python     | 3.11+   | Primary language     |
+| Framework | FastAPI    | 0.100+  | Web framework        |
+| Database  | PostgreSQL | 15      | Data persistence     |
+| ORM       | SQLAlchemy | 2.0     | Database abstraction |
 ```
 
 ### 3. Architectural Style
@@ -70,17 +71,17 @@ Identify the primary pattern:
 
 ### 4. Component Architecture
 
-```markdown
+````markdown
 ## Components
 
 ### Core Components
 
-| Component | Location | Responsibility |
-|-----------|----------|----------------|
-| API Layer | `src/api/` | HTTP endpoints |
-| Services | `src/services/` | Business logic |
-| Models | `src/models/` | Data structures |
-| Repository | `src/repositories/` | Data access |
+| Component  | Location            | Responsibility  |
+| ---------- | ------------------- | --------------- |
+| API Layer  | `src/api/`          | HTTP endpoints  |
+| Services   | `src/services/`     | Business logic  |
+| Models     | `src/models/`       | Data structures |
+| Repository | `src/repositories/` | Data access     |
 
 ### Component Interactions
 
@@ -90,7 +91,9 @@ graph TD
     B --> C[Repository]
     C --> D[Database]
 ```
-```
+````
+
+````
 
 ### 5. Data Architecture
 
@@ -110,18 +113,18 @@ graph TD
 - Migration strategy
 - Indexing patterns
 - Caching strategy
-```
+````
 
 ### 6. Integration Points
 
 ```markdown
 ## Integrations
 
-| Service | Purpose | Protocol | Configuration |
-|---------|---------|----------|---------------|
-| Auth0 | Authentication | OAuth2 | `AUTH0_*` env vars |
-| Stripe | Payments | REST API | `STRIPE_*` env vars |
-| Redis | Caching | TCP | `REDIS_URL` env var |
+| Service | Purpose        | Protocol | Configuration       |
+| ------- | -------------- | -------- | ------------------- |
+| Auth0   | Authentication | OAuth2   | `AUTH0_*` env vars  |
+| Stripe  | Payments       | REST API | `STRIPE_*` env vars |
+| Redis   | Caching        | TCP      | `REDIS_URL` env var |
 ```
 
 ### 7. Security Architecture
@@ -151,15 +154,15 @@ graph TD
 
 Create these files in `.lbi/docs/architecture/`:
 
-| File | Description |
-|------|-------------|
-| `system-analysis.md` | Overall architecture analysis |
-| `technology-stack.md` | Technology inventory with versions |
+| File                        | Description                          |
+| --------------------------- | ------------------------------------ |
+| `system-analysis.md`        | Overall architecture analysis        |
+| `technology-stack.md`       | Technology inventory with versions   |
 | `component-architecture.md` | Component diagrams and relationships |
-| `data-architecture.md` | Data models and entity catalog |
-| `integration-landscape.md` | External service integrations |
-| `security-architecture.md` | Security patterns and controls |
-| `architecture-summary.md` | Compact summary (≤100 lines) |
+| `data-architecture.md`      | Data models and entity catalog       |
+| `integration-landscape.md`  | External service integrations        |
+| `security-architecture.md`  | Security patterns and controls       |
+| `architecture-summary.md`   | Compact summary (≤100 lines)         |
 
 ## Architecture Summary Template
 
@@ -171,20 +174,25 @@ Create a compact summary for quick reference:
 **Project**: [Name] | **Updated**: [Date]
 
 ## Structure (≤10 rows)
+
 | Area | Path | Purpose |
-|------|------|---------|
+| ---- | ---- | ------- |
 
 ## Stack (≤8 rows)
+
 | Layer | Tech | Version |
-|-------|------|---------|
+| ----- | ---- | ------- |
 
 ## Critical Paths (≤10 bullets)
+
 - `path` → why it's critical
 
 ## Integration Points (≤8 bullets)
+
 - Service → Purpose
 
 ## Patterns (≤10 bullets)
+
 - Pattern name: description
 ```
 
@@ -192,15 +200,15 @@ Create a compact summary for quick reference:
 
 Scan for entities based on detected language:
 
-| Language | Patterns to Find |
-|----------|------------------|
-| Python | SQLAlchemy models, Django models, Pydantic |
-| JavaScript | Mongoose, Sequelize, TypeORM, Prisma |
-| Java | JPA entities, Hibernate |
-| Go | GORM structs |
-| Ruby | ActiveRecord models |
-| PHP | Eloquent, Doctrine |
-| C# | Entity Framework |
+| Language   | Patterns to Find                           |
+| ---------- | ------------------------------------------ |
+| Python     | SQLAlchemy models, Django models, Pydantic |
+| JavaScript | Mongoose, Sequelize, TypeORM, Prisma       |
+| Java       | JPA entities, Hibernate                    |
+| Go         | GORM structs                               |
+| Ruby       | ActiveRecord models                        |
+| PHP        | Eloquent, Doctrine                         |
+| C#         | Entity Framework                           |
 
 ## Validation Checklist
 
@@ -216,6 +224,7 @@ Before completing:
 ## Next Steps
 
 After architecture analysis:
+
 1. Run `/lbi.request` to capture feature requirements
 2. Run `/lbi.specify` with architectural context
 3. Run `/lbi.validate-architecture` to check compliance

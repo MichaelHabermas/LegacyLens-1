@@ -290,9 +290,9 @@ graph TD
 
 ### Epic 0 Progress
 
-- ☐ 0.1 Project Setup Complete
+- ☑ 0.1 Project Setup Complete
 - ☐ 0.2 Cursor Rules Configured
-- ☐ 0.3 Dependencies Installed
+- ☑ 0.3 Dependencies Installed
 - ☐ 0.4 Core Interfaces Defined
 
 ---
@@ -315,16 +315,16 @@ graph TD
 
 **Subtasks**:
 
-- [ ] Create directory structure (`src/`, `tests/`, `docs/`, `.github/`)
-- [ ] Add `.gitignore` (Python, IDE, env files)
-- [ ] Create `README.md` with setup instructions
-- [ ] Initialize `pyproject.toml` with project metadata
+- [x] Create directory structure (`src/`, `tests/`, `docs/`, `.github/`)
+- [x] Add `.gitignore` (Python, IDE, env files)
+- [x] Create `README.md` with setup instructions
+- [x] Initialize `pyproject.toml` with project metadata
 
 ##### Commit 2: `feat(init): add Python packaging config`
 
 **Subtasks**:
 
-- [ ] Configure `pyproject.toml` with dependencies:
+- [x] Configure `pyproject.toml` with dependencies:
   - `llama-index>=0.10.0`
   - `llama-index-llms-anthropic>=0.1.0`
   - `llama-index-embeddings-voyageai>=0.1.0`
@@ -337,32 +337,32 @@ graph TD
   - `pytest>=8.0.0`
   - `pytest-asyncio>=0.23.0`
   - `pytest-cov>=4.0.0`
-- [ ] Add dev dependencies (`black`, `ruff`, `mypy`, `pre-commit`)
-- [ ] Create `requirements.txt` and `requirements-dev.txt`
+- [x] Add dev dependencies (`black`, `ruff`, `mypy`, `pre-commit`)
+- [x] Create `requirements.txt` and `requirements-dev.txt`
 
 ##### Commit 3: `feat(ci): add GitHub Actions workflows`
 
 **Subtasks**:
 
-- [ ] Create `.github/workflows/test.yml` (run tests on PR)
-- [ ] Create `.github/workflows/lint.yml` (black, ruff, mypy)
-- [ ] Create `.github/workflows/deploy.yml` (Vercel deployment)
-- [ ] Add branch protection rules in workflow config
+- [x] Create `.github/workflows/test.yml` (run tests on PR)
+- [x] Create `.github/workflows/lint.yml` (black, ruff, mypy)
+- [x] Create `.github/workflows/deploy.yml` (Vercel deployment)
+- [x] Add branch protection rules in workflow config
 
 ##### Commit 4: `docs(readme): add comprehensive setup guide`
 
 **Subtasks**:
 
-- [ ] Document installation steps
-- [ ] Add environment variable setup instructions
-- [ ] Include development workflow guide
-- [ ] Add troubleshooting section
+- [x] Document installation steps
+- [x] Add environment variable setup instructions
+- [x] Include development workflow guide
+- [x] Add troubleshooting section
 
 **Tests**:
 
-- [ ] Verify `pyproject.toml` parses correctly
-- [ ] Run `pip install -e .` successfully
-- [ ] GitHub Actions workflows validate
+- [x] Verify `pyproject.toml` parses correctly
+- [x] Run `pip install -e .` successfully
+- [x] GitHub Actions workflows validate
 
 ---
 
