@@ -293,7 +293,7 @@ graph TD
 - ☑ 0.1 Project Setup Complete
 - ☑ 0.2 Cursor Rules Configured
 - ☑ 0.3 Dependencies Installed
-- ☐ 0.4 Core Interfaces Defined
+- ☑ 0.4 Core Interfaces Defined
 
 ---
 
@@ -541,51 +541,51 @@ Always use latest docs for:
 
 **Subtasks**:
 
-- [ ] Create `src/core/interfaces/parser.py`:
+- [x] Create `src/core/interfaces/parser.py`:
   - `IParser` (ABC with `parse_file()` method)
-- [ ] Create `src/core/interfaces/chunker.py`:
+- [x] Create `src/core/interfaces/chunker.py`:
   - `IChunker` (ABC with `chunk()` method)
-- [ ] Create `src/core/interfaces/embedder.py`:
+- [x] Create `src/core/interfaces/embedder.py`:
   - `IEmbedder` (ABC with `embed_batch()` method)
-- [ ] Create `src/core/interfaces/indexer.py`:
+- [x] Create `src/core/interfaces/indexer.py`:
   - `IIndexer` (ABC with `upsert()`, `delete()` methods)
 
 ##### Commit 2: `feat(core): define retrieval interfaces`
 
 **Subtasks**:
 
-- [ ] Create `src/core/interfaces/searcher.py`:
+- [x] Create `src/core/interfaces/searcher.py`:
   - `ISearcher` (ABC with `search()` method)
-- [ ] Create `src/core/interfaces/reranker.py`:
+- [x] Create `src/core/interfaces/reranker.py`:
   - `IReranker` (ABC with `rerank()` method)
-- [ ] Create `src/core/interfaces/assembler.py`:
+- [x] Create `src/core/interfaces/assembler.py`:
   - `IContextAssembler` (ABC with `assemble()` method)
 
 ##### Commit 3: `feat(core): define generation interfaces`
 
 **Subtasks**:
 
-- [ ] Create `src/core/interfaces/llm_provider.py`:
+- [x] Create `src/core/interfaces/llm_provider.py`:
   - `ILLMProvider` (ABC with `generate()` method)
 
 ##### Commit 4: `feat(core): define data models`
 
 **Subtasks**:
 
-- [ ] Create `src/core/models/chunk.py`:
+- [x] Create `src/core/models/chunk.py`:
   - `Chunk` (Pydantic model: content, metadata, embedding)
-- [ ] Create `src/core/models/query.py`:
+- [x] Create `src/core/models/query.py`:
   - `Query` (Pydantic model: text, filters, top_k)
-- [ ] Create `src/core/models/result.py`:
+- [x] Create `src/core/models/result.py`:
   - `SearchResult` (Pydantic model: chunks, scores, citations)
 
 ##### Commit 5: `docs(interfaces): add interface documentation`
 
 **Subtasks**:
 
-- [ ] Document each interface's purpose
-- [ ] Add usage examples in docstrings
-- [ ] Create architecture diagram (Mermaid)
+- [x] Document each interface's purpose
+- [x] Add usage examples in docstrings
+- [x] Create architecture diagram (Mermaid)
 
 **Architecture Diagram**:
 
@@ -609,8 +609,8 @@ graph TD
 
 **Tests**:
 
-- [ ] Verify all interfaces are abstract (cannot instantiate)
-- [ ] Test data models validate correctly
+- [x] Verify all interfaces are abstract (cannot instantiate)
+- [x] Test data models validate correctly
 
 ---
 
