@@ -13,6 +13,8 @@ LegacyLens ingests legacy code, indexes it with syntax-aware chunking and embedd
 
 ## Setup
 
+### Installation
+
 1. **Clone the repository**
 
    ```bash
@@ -30,26 +32,39 @@ LegacyLens ingests legacy code, indexes it with syntax-aware chunking and embedd
    source .venv/bin/activate
    ```
 
-3. **Install the project**
-   When the project is scaffolded (Epic 0), install in editable mode:
+3. **Install the project in editable mode**
 
    ```bash
    pip install -e .
    ```
 
-   Until then, install steps will be added here as dependencies are defined.
+   For development (linting, type checking, tests):
+
+   ```bash
+   pip install -e ".[dev]"
+   ```
 
 4. **Environment variables**
-   Copy `.env.example` to `.env` and set the required variables. When `.env.example` is added (Epic 0), use it as the template. Required variables:
-   - `PINECONE_API_KEY` — Pinecone serverless vector DB
-   - `VOYAGE_API_KEY` — Voyage-code-3 embeddings
-   - `ANTHROPIC_API_KEY` — Claude LLM
-   - `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` — Neo4j (for dependency graph; optional for MVP)
-   - `REDIS_URL` — Redis (embedding/query cache)
-   - `LANGSMITH_API_KEY` — (optional) LangSmith tracing
-   - `ENVIRONMENT` — `dev`, `staging`, or `prod`
+
+   Copy `.env.example` to `.env` and set the required variables. See [Environment and Configuration](docs/technology/ENVIRONMENT-AND-CONFIG.md) for the full list, where to get API keys, and secrets handling.
+
+   **Required**: `PINECONE_API_KEY`, `VOYAGE_API_KEY`, `ANTHROPIC_API_KEY`. **Recommended**: `ENVIRONMENT` (`dev`, `staging`, or `prod`). **Optional**: `PINECONE_INDEX_NAME`, `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `REDIS_URL`, `LANGSMITH_API_KEY`, `LEGACYLENS_API_URL`.
 
    Do not commit `.env`; it is listed in `.gitignore`.
+
+### Development workflow
+
+- Work on the `development` branch. Create feature branches from it: `feature/epic-X-short-description`.
+- Use [Conventional Commits](https://www.conventionalcommits.org/): `feat(scope): description`, `fix(scope): description`, `test(scope): ...`, `docs(scope): ...`.
+- Run tests before merging: `pytest tests/ -v`. Run lint: `black src/ tests/`, `ruff check src/ tests/`, `mypy src/`.
+- Merge feature branches into `development`; do not commit directly to `main`. See [PRD — Development Workflow](docs/PRD.md#development-workflow) for the full git workflow.
+
+### Troubleshooting
+
+- **`pip install -e .` fails**: Ensure Python 3.11+ (`python --version`). Use a fresh virtual environment.
+- **Tests fail with import errors**: Install in editable mode from repo root: `pip install -e ".[dev]"`.
+- **Missing API keys**: Set required env vars in `.env` (copy from `.env.example`). The app will fail fast at startup if required keys are missing.
+- **CI failures**: Run `pytest tests/ -v` and `black --check src/ tests/`, `ruff check src/ tests/` locally to match CI.
 
 ## Getting started
 

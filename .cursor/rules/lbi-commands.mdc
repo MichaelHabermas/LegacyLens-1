@@ -1,0 +1,22 @@
+---
+description: Use LBI commands from .cursor/commands/lbi.lbi.md when they would help
+alwaysApply: true
+---
+
+# LBI Commands Reference
+
+When working in this project, **check `.cursor/commands/lbi.lbi.md`** to know and use whatever LBI commands would be most useful for the current task.
+
+## When to Consult
+
+- **Before starting**: Read the file to see available slash commands and the workflow decision tree.
+- **New features or specs**: Prefer the SDD workflow (`/lbi.request`, `/lbi.specify`, `/lbi.plan`, `/lbi.implement`, etc.) or the lite workflow for small changes (`/lbi.lite.request`, `/lbi.lite.plan`, `/lbi.lite.implement`).
+- **Governance or architecture**: Use `/lbi.constitution`, `/lbi.architecture`, `/lbi.validate-constitution`, `/lbi.validate-architecture`.
+- **QA or tests**: Use the QA workflow (`/lbi.qa.plan`, `/lbi.qa.tasks`, `/lbi.qa.implement`, etc.).
+- **Product/PM work**: Use the PM workflow (`/lbi.pm.discover`, `/lbi.pm.prd`, `/lbi.pm.stories`, etc.).
+- **CI/CD, security, or pre-deploy**: Use `/lbi.ci-setup`, `/lbi.security-setup`, `/lbi.preflight`, `/lbi.ready-to-push`.
+- **Documentation or tasks**: Use `/lbi.docs`, `/lbi.document`, `/lbi.tasks`, `/lbi.checklist`.
+
+## Action
+
+When an LBI command would clearly help (e.g., planning, spec, review, push), **read the corresponding command file** under `.cursor/commands/` and follow its instructions. Prefer using the command’s workflow over ad-hoc steps.
