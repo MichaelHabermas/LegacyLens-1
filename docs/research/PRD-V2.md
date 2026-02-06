@@ -1,30 +1,29 @@
 # LegacyLens Product Requirements Document (PRD)
 
-**Version**: 2.0 (Final)  
+**Version**: 1.1  
 **Author**: Michael (@habermoose)  
 **Date**: February 06, 2026  
 **Project**: LegacyLens - RAG System for Legacy Enterprise Codebases  
-**Repository**: <https://github.com/MichaelHabermas/LegacyLens-1>
+**Repository**: https://github.com/MichaelHabermas/LegacyLens-1
 
-_Final PRD. Based on [PRD-V2](research/PRD-V2.md). Aligned with [RAG and Legacy Code Primer](technology/RAG-AND-LEGACY-PRIMER.md), [Tech Stack Guide](technology/TECH-STACK-GUIDE.md), and [Environment and Configuration](technology/ENVIRONMENT-AND-CONFIG.md)._
+_Expanded from [PRD-V1](research/PRD-V1.md) with elaborated epics and additional mermaid diagrams._
 
 ---
 
 ## Table of Contents
 
 1. [Executive Summary](#executive-summary)
-2. [System Context and Related Documentation](#system-context-and-related-documentation)
-3. [Development Workflow](#development-workflow)
-4. [Architecture Principles](#architecture-principles)
-5. [Epic 0: Project Foundation & Configuration](#epic-0-project-foundation--configuration)
-6. [Epic 1: Codebase Ingestion Pipeline](#epic-1-codebase-ingestion-pipeline)
-7. [Epic 2: Retrieval Pipeline](#epic-2-retrieval-pipeline)
-8. [Epic 3: Answer Generation](#epic-3-answer-generation)
-9. [Epic 4: Query Interface (CLI)](#epic-4-query-interface-cli)
-10. [Epic 5: Observability & Monitoring](#epic-5-observability--monitoring)
-11. [Epic 6: MVP Hardening & Validation](#epic-6-mvp-hardening--validation)
-12. [Post-MVP Epics](#post-mvp-epics)
-13. [Appendices](#appendices) (A: Diagrams, B: Acceptance Criteria, C: Git Workflow, D: Tech Stack, E: Environment Variables)
+2. [Development Workflow](#development-workflow)
+3. [Architecture Principles](#architecture-principles)
+4. [Epic 0: Project Foundation & Configuration](#epic-0-project-foundation--configuration)
+5. [Epic 1: Codebase Ingestion Pipeline](#epic-1-codebase-ingestion-pipeline)
+6. [Epic 2: Retrieval Pipeline](#epic-2-retrieval-pipeline)
+7. [Epic 3: Answer Generation](#epic-3-answer-generation)
+8. [Epic 4: Query Interface (CLI)](#epic-4-query-interface-cli)
+9. [Epic 5: Observability & Monitoring](#epic-5-observability--monitoring)
+10. [Epic 6: MVP Hardening & Validation](#epic-6-mvp-hardening--validation)
+11. [Post-MVP Epics](#post-mvp-epics)
+12. [Appendices](#appendices)
 
 ---
 
@@ -55,22 +54,6 @@ LegacyLens is a RAG-powered system that makes legacy enterprise codebases (COBOL
 - **Interface**: CLI (Python with Rich/Pygments)
 - **Observability**: Arize Phoenix + LangSmith
 - **CI/CD**: GitHub Actions
-
----
-
-## System Context and Related Documentation
-
-LegacyLens is a [RAG](technology/RAG-AND-LEGACY-PRIMER.md) system for legacy code (COBOL, Fortran). The system has two main flows: **ingestion** (parse → chunk → embed → store) and **query** (embed query → hybrid search → rerank → assemble context → LLM → answer with citations). For concepts, end-to-end flow, and why this stack fits legacy code, see the [RAG and Legacy Code Primer](technology/RAG-AND-LEGACY-PRIMER.md).
-
-**Related documentation**:
-
-- [RAG and Legacy Code Primer](technology/RAG-AND-LEGACY-PRIMER.md) — concepts and end-to-end flow
-- [Tech Stack In-Depth Guide](technology/TECH-STACK-GUIDE.md) — setup and use of each technology
-- [Environment and Configuration](technology/ENVIRONMENT-AND-CONFIG.md) — env vars (single source of truth), secrets, environments
-- [Glossary](GLOSSARY.md) — term definitions
-- [Documentation index](README.md) — map of all docs
-
----
 
 ### Epic Roadmap and Dependencies
 
@@ -149,12 +132,10 @@ graph LR
 2. **All development happens in `development` branch**
 3. **Feature branches created from `development`**
 4. **Feature workflow**:
-
-   ```text
+   ```
    Create Feature Branch → Implement (commits) → Write Tests → Run Tests →
    Fix Issues → Rerun Tests → Merge to development
    ```
-
 5. **Branch naming**: `feature/epic-X-short-description`
 6. **Commit naming**: `feat(scope): description` or `fix(scope): description`
 
@@ -210,8 +191,6 @@ graph TD
 5. **Dependency Inversion Principle (DIP)**
    - High-level modules depend on abstractions
    - Example: Inject vector DB via `IVectorStore` interface
-
-For architecture and module boundaries, see also [Design Document](research/DESIGN-DOCUMENT.md).
 
 ### Module Structure
 
@@ -491,12 +470,16 @@ Always use latest docs for:
 
 **Subtasks**:
 
-- [ ] Create `.env.example` with required and optional vars:
-  - **Required**: `PINECONE_API_KEY`, `VOYAGE_API_KEY`, `ANTHROPIC_API_KEY`, `ENVIRONMENT` (recommended: dev/staging/prod)
-  - **Optional**: `PINECONE_INDEX_NAME`, `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `REDIS_URL`, `LANGSMITH_API_KEY`, `LEGACYLENS_API_URL`
+- [ ] Create `.env.example` with all required vars:
+  - `PINECONE_API_KEY`
+  - `VOYAGE_API_KEY`
+  - `ANTHROPIC_API_KEY`
+  - `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`
+  - `REDIS_URL`
+  - `LANGSMITH_API_KEY` (optional)
+  - `ENVIRONMENT` (dev/staging/prod)
 - [ ] Add comments explaining each variable
 - [ ] Include `.env` in `.gitignore`
-- [ ] Note: Full variable descriptions, required vs optional, and secrets handling are in [Environment and Configuration](technology/ENVIRONMENT-AND-CONFIG.md).
 
 ##### Commit 2: `feat(config): create config module`
 
@@ -2848,25 +2831,5 @@ git branch -d feature/epic-X-description
 | Deployment    | Vercel            | -       | [vercel.com/docs](https://vercel.com/docs)                    |
 | Observability | LangSmith         | -       | [docs.smith.langchain.com](https://docs.smith.langchain.com/) |
 | Testing       | pytest            | 8.0+    | [docs.pytest.org](https://docs.pytest.org/)                   |
-
-For setup, configuration, and troubleshooting per component, see the [Tech Stack In-Depth Guide](technology/TECH-STACK-GUIDE.md).
-
----
-
-### Appendix E: Environment Variables Summary
-
-| Variable                                    | Required    | Description                                    |
-| ------------------------------------------- | ----------- | ---------------------------------------------- |
-| `PINECONE_API_KEY`                          | Yes         | Pinecone serverless API key                    |
-| `VOYAGE_API_KEY`                            | Yes         | Voyage AI (Voyage-code-3) API key              |
-| `ANTHROPIC_API_KEY`                         | Yes         | Anthropic (Claude) API key                     |
-| `ENVIRONMENT`                               | Recommended | `dev`, `staging`, or `prod`                    |
-| `PINECONE_INDEX_NAME`                       | No          | Pinecone index name (optional default in code) |
-| `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` | No          | Neo4j (GraphRAG; optional for MVP)             |
-| `REDIS_URL`                                 | No          | Redis URL for embedding/query cache            |
-| `LANGSMITH_API_KEY`                         | No          | LangSmith tracing                              |
-| `LEGACYLENS_API_URL`                        | No          | Backend API base URL for CLI                   |
-
-For the full list, descriptions, where to get API keys, environments (dev/staging/prod), and secrets handling, see [Environment and Configuration](technology/ENVIRONMENT-AND-CONFIG.md).
 
 ---
