@@ -1,0 +1,59 @@
+---
+description: LegacyLens project rules — tech stack, SOLID, git workflow, Context7 MCP, code quality
+globs: ["**/*.py", "**/pyproject.toml", "**/docs/**"]
+---
+
+# LegacyLens Cursor Rules
+
+## Tech Stack
+
+- **Language**: Python 3.11+
+- **Framework**: LlamaIndex (Workflows 1.0, LlamaAgents Builder, LlamaParse v2)
+- **Vector DB**: Pinecone Serverless
+- **Embeddings**: Voyage-code-3 (1536 dims)
+- **LLM**: Claude 4.5 Sonnet (Anthropic)
+- **Reranker**: Zerank-2
+- **Graph DB**: Neo4j (optional, for dependencies)
+- **Caching**: Redis
+- **Deployment**: Vercel Serverless
+- **Interface**: CLI (Python with Rich/Pygments)
+- **Observability**: Arize Phoenix + LangSmith
+- **CI/CD**: GitHub Actions
+- **Config**: Pydantic v2 / pydantic-settings for env validation
+
+Use these technologies as specified in docs/technology/TECH-STACK-GUIDE.md and docs/PRD.md.
+
+## SOLID Principles
+
+- **SRP (Single Responsibility)**: One concern per module. Example: ChunkerModule only splits code; EmbedderModule only generates vectors.
+- **OCP (Open/Closed)**: Extend via interfaces, not by modifying core. Example: Add Fortran parser by implementing ParserInterface without changing core.
+- **LSP (Liskov Substitution)**: Subclasses must be substitutable. Example: COBOLChunker can replace BaseChunker without breaking callers.
+- **ISP (Interface Segregation)**: Small, focused interfaces. Example: IEmbedder, ISearcher, IReranker are separate.
+- **DIP (Dependency Inversion)**: Depend on abstractions. Example: Inject vector DB via IVectorStore interface.
+
+## Git Workflow
+
+- **Branch naming**: `feature/epic-X-short-description` (e.g. `feature/epic-0-repo-structure`). All work branches from `development`; merge back to `development`. Never commit directly to `main`.
+- **Commit format**: [Conventional Commits](https://www.conventionalcommits.org/): `feat(scope): description`, `fix(scope): description`, `test(scope): ...`, `docs(scope): ...`, `refactor(scope): ...`.
+- **PR**: Open PR from feature branch to `development`. Require tests and lint to pass.
+- **Merge**: Prefer squash merge for feature branches into `development`.
+
+## Context7 MCP
+
+Always use Context7 (or latest stable docs) when generating code or configuration:
+
+- **LlamaIndex**: https://docs.llamaindex.ai/
+- **Pinecone**: https://docs.pinecone.io/
+- **Anthropic (Claude)**: https://docs.anthropic.com/
+- **Voyage AI**: https://docs.voyageai.com/
+- **Pydantic v2**: https://docs.pydantic.dev/
+
+Fetch these when implementing ingestion, retrieval, generation, or config.
+
+## Code Quality
+
+- **Type hints**: Required; aim for `mypy --strict` compatibility.
+- **Docstrings**: Google style. Document purpose, args, returns, raises.
+- **Tests**: Unit tests required for all new functions; place under `tests/`.
+- **Formatting**: Black, 88 character line length. Ruff for linting. Import organization (isort or Ruff).
+- **No**: `console.log` / `print` for debugging in committed code; no `any` types; no Husky/pre-commit required (per project rules).
