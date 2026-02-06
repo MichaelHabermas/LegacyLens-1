@@ -59,6 +59,16 @@ LegacyLens ingests legacy code, indexes it with syntax-aware chunking and embedd
 - Run tests before merging: `pytest tests/ -v`. Run lint: `black src/ tests/`, `ruff check src/ tests/`, `mypy src/`.
 - Merge feature branches into `development`; do not commit directly to `main`. See [PRD — Development Workflow](docs/PRD.md#development-workflow) for the full git workflow.
 
+### Running tests
+
+After installing with dev dependencies (`pip install -e ".[dev]"`), run the full test suite:
+
+```bash
+pytest tests/ -v --tb=short
+```
+
+CI runs the same on push/PR to `development` and `main` (see `.github/workflows/test.yml`).
+
 ### Troubleshooting
 
 - **`pip install -e .` fails**: Ensure Python 3.11+ (`python --version`). Use a fresh virtual environment.
