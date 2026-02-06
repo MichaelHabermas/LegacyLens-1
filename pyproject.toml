@@ -20,9 +20,27 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development",
 ]
+dependencies = [
+    "llama-index>=0.10.0",
+    "llama-index-llms-anthropic>=0.1.0",
+    "llama-index-embeddings-voyageai>=0.1.0",
+    "pinecone-client>=3.0.0",
+    "redis>=5.0.0",
+    "neo4j>=5.0.0",
+    "rich>=13.0.0",
+    "pygments>=2.0.0",
+    "pydantic>=2.0.0",
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.0.0",
+]
 
 [project.optional-dependencies]
-dev = []
+dev = [
+    "black>=24.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
