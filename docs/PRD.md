@@ -491,37 +491,37 @@ Always use latest docs for:
 
 **Subtasks**:
 
-- [ ] Create `.env.example` with required and optional vars:
+- [x] Create `.env.example` with required and optional vars:
   - **Required**: `PINECONE_API_KEY`, `VOYAGE_API_KEY`, `ANTHROPIC_API_KEY`, `ENVIRONMENT` (recommended: dev/staging/prod)
   - **Optional**: `PINECONE_INDEX_NAME`, `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `REDIS_URL`, `LANGSMITH_API_KEY`, `LEGACYLENS_API_URL`
-- [ ] Add comments explaining each variable
-- [ ] Include `.env` in `.gitignore`
-- [ ] Note: Full variable descriptions, required vs optional, and secrets handling are in [Environment and Configuration](technology/ENVIRONMENT-AND-CONFIG.md).
+- [x] Add comments explaining each variable
+- [x] Include `.env` in `.gitignore`
+- [x] Note: Full variable descriptions, required vs optional, and secrets handling are in [Environment and Configuration](technology/ENVIRONMENT-AND-CONFIG.md).
 
 ##### Commit 2: `feat(config): create config module`
 
 **Subtasks**:
 
-- [ ] Create `src/core/config/settings.py`
-- [ ] Use `pydantic-settings` for validation
-- [ ] Define `Settings` class with typed fields
-- [ ] Add environment-specific config loading (dev/prod)
-- [ ] Implement singleton pattern for config access
+- [x] Create `src/core/config/settings.py`
+- [x] Use `pydantic-settings` for validation
+- [x] Define `Settings` class with typed fields
+- [x] Add environment-specific config loading (dev/prod)
+- [x] Implement singleton pattern for config access
 
 ##### Commit 3: `test(config): add config validation tests`
 
 **Subtasks**:
 
-- [ ] Test config loads from environment
-- [ ] Test missing required variables raise errors
-- [ ] Test default values applied correctly
-- [ ] Test environment-specific overrides
+- [x] Test config loads from environment
+- [x] Test missing required variables raise errors
+- [x] Test default values applied correctly
+- [x] Test environment-specific overrides
 
 **Tests**:
 
-- [ ] `test_config_loads_from_env()`
-- [ ] `test_config_validates_required_keys()`
-- [ ] `test_config_singleton_pattern()`
+- [x] `test_config_loads_from_env()`
+- [x] `test_config_validates_required_keys()`
+- [x] `test_config_singleton_pattern()`
 
 ---
 
