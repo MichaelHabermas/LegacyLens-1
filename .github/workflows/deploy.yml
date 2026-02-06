@@ -1,0 +1,32 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Vercel deployment is typically connected via Vercel GitHub integration.
+# This workflow can run build/tests before deploy or trigger external deploy.
+# Configure branch protection so main is only updated via PR from development.
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install and test
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+          pytest tests/ -v --tb=short
+
+      - name: Deploy (Vercel)
+        run: |
+          # Vercel CLI deploy or rely on Vercel GitHub integration.
+          # echo "Deploy to Vercel via dashboard or vercel --prod"
+          exit 0
