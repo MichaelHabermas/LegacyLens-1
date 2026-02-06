@@ -140,4 +140,28 @@ vite.config.ts.timestamp-*
 
 .lbi/
 
-.cursor/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Cursor rules are committed so team shares project rules
+# .cursor/ is ignored by default; uncomment below to track .cursor/rules
+# !.cursor/rules
